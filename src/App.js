@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { handleInitialData } from "./actions/shared";
+import { connect } from "react-redux";
+import LoginPage from "./components/LoginPage";
+import DashboardPage from "./components/DashboardPage";
+import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import PollCreationPage from "./components/PollCreationPage";
+import PollPage from "./components/PollPage";
 
-function App() {
+const App = ({ dispatch, loggedIn }) => {
+  useEffect(() => {
+    dispatch(handleInitialData());
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/login" exact element={<LoginPage />} />
+        <Route path="/" element={<DashboardPage />} />
+        <Route path="/new" exact element={<PollCreationPage />}></Route>
+        <Route path="/question/:id" element={<PollPage />}></Route>
+      </Routes>
     </div>
   );
-}
+};
 
-export default App;
+const mapStateToProps = ({ authorizedUser }) => ({
+  loggedIn: !!authorizedUser,
+});
+
+export default connect(mapStateToProps)(App);
