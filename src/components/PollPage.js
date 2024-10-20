@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { Navigate, useParams } from "react-router-dom";
+import Nav from "./Nav";
 
 const PollPage = ({ loggedIn, question, userId }) => {
   const redirectUrl = window.location.href
@@ -8,6 +9,7 @@ const PollPage = ({ loggedIn, question, userId }) => {
 
   return loggedIn ? (
     <div>
+      <Nav />
       <h1>Poll by {question.author}</h1>
       <h2>Would you rather?</h2>
       <div>

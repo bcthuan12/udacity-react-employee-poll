@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import PollPanel from "./PollPanel";
+import Nav from "./Nav";
 
 const DashboardPage = ({ loggedIn, userId, questions }) => {
   const redirectUrl = window.location.href
@@ -20,6 +21,7 @@ const DashboardPage = ({ loggedIn, userId, questions }) => {
 
   return loggedIn ? (
     <div>
+      <Nav />
       <div>Dashboard</div>
       <div>
         <h2>New Questions</h2>

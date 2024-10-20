@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
+import Nav from "./Nav";
 
 const LeaderBoardPage = ({ loggedIn, users }) => {
   const redirectUrl = window.location.href
@@ -7,6 +8,8 @@ const LeaderBoardPage = ({ loggedIn, users }) => {
     .split(window.location.host)[1];
   return loggedIn ? (
     <div>
+      <Nav />
+
       <h1>Leader board</h1>
       <ul>
         {users.map((u) => (
