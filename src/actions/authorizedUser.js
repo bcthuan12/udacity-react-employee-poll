@@ -18,7 +18,6 @@ export const authorize = (username, password) => {
   return (dispatch, getState) => {
     const { users } = getState();
 
-    debugger;
     const user = Object.values(users).find(
       (u) => u.id === username && u.password === password
     );

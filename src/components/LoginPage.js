@@ -4,10 +4,9 @@ import { Navigate } from "react-router-dom";
 import { authorize } from "../actions/authorizedUser";
 
 const LoginPage = ({ dispatch, loggedIn }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("mtsamis");
+  const [password, setPassword] = useState("xyz123");
 
-  console.log("Logged in ", loggedIn);
   if (loggedIn) {
     const redirectUrl = new URLSearchParams(window.location.search).get(
       "redirectTo"
@@ -21,8 +20,6 @@ const LoginPage = ({ dispatch, loggedIn }) => {
   const submit = (e) => {
     e.preventDefault();
     dispatch(authorize(username, password));
-    setUsername("");
-    setPassword("");
   };
 
   return (

@@ -21,8 +21,7 @@ const logger = (store) => (next) => (action) => {
 
 const store = configureStore({
   reducer: { users, questions, authorizedUser },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(logger),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

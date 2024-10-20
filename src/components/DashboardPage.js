@@ -6,7 +6,6 @@ const DashboardPage = ({ loggedIn, userId, questions }) => {
   const redirectUrl = window.location.href
     .toString()
     .split(window.location.host)[1];
-  console.log(questions);
   const doneQuestions = questions.filter(
     (question) =>
       question.optionOne.votes.includes(userId) ||
@@ -25,21 +24,21 @@ const DashboardPage = ({ loggedIn, userId, questions }) => {
       <div>
         <h2>New Questions</h2>
         <ul>
-          {newQuestions.map((question) => {
+          {newQuestions.map((question) => (
             <li key={question.id}>
               <PollPanel question={question} />
-            </li>;
-          })}
+            </li>
+          ))}
         </ul>
       </div>
       <div>
         <h2>Done</h2>
         <ul>
-          {doneQuestions.map((question) => {
+          {doneQuestions.map((question) => (
             <li key={question.id}>
               <PollPanel question={question} />
-            </li>;
-          })}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
