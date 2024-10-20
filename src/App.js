@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import PollCreationPage from "./components/PollCreationPage";
 import PollPage from "./components/PollPage";
+import LeaderBoardPage from "./components/LeaderBoardPage";
 
 const App = ({ dispatch, loggedIn }) => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const App = ({ dispatch, loggedIn }) => {
         <Route path="/" element={<DashboardPage />} />
         <Route path="/new" exact element={<PollCreationPage />}></Route>
         <Route path="/question/:id" element={<PollPage />}></Route>
+        <Route path="/leaderboard" exact element={<LeaderBoardPage />}></Route>
       </Routes>
     </div>
   );
