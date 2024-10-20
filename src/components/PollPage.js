@@ -7,6 +7,9 @@ const PollPage = ({ loggedIn, question, userId }) => {
     .toString()
     .split(window.location.host)[1];
 
+  const voteOne = (e) => {
+    e.preventDefault();
+  };
   return loggedIn ? (
     <div>
       <Nav />
