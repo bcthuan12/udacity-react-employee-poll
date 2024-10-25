@@ -9,6 +9,8 @@ const PollPanel = ({ question }) => {
   return (
     <div>
       <h4>{question.author}</h4>
+      <h4>{question.optionOne.text}</h4>
+      <h4>{question.optionTwo.text}</h4>
       <h6>{createDate(question.timestamp)}</h6>
       <Link to={"/question/" + question.id}>Show</Link>
     </div>

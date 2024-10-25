@@ -1,14 +1,25 @@
 import { connect } from "react-redux";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Nav from "./Nav";
+import { handleVote } from "../actions/questions";
 
-const PollPage = ({ loggedIn, question, userId }) => {
+const PollPage = ({ dispatch, loggedIn, question, userId }) => {
   const redirectUrl = window.location.href
     .toString()
     .split(window.location.host)[1];
 
+  const navigate = useNavigate();
+
   const voteOne = (e) => {
     e.preventDefault();
+    dispatch(handleVote(question.id, "optionOne"));
+    navigate("/");
+  };
+
+  const voteTwo = (e) => {
+    e.preventDefault();
+    dispatch(handleVote(question.id, "optionTwo"));
+    navigate("/");
   };
   return loggedIn ? (
     <div>
@@ -17,11 +28,11 @@ const PollPage = ({ loggedIn, question, userId }) => {
       <h2>Would you rather?</h2>
       <div>
         <h6>{question?.optionOne?.text}</h6>
-        <button>Click</button>
+        <button onClick={(e) => voteOne(e)}>Click</button>
       </div>
       <div>
         <h6>{question?.optionTwo?.text}</h6>
-        <button>Click</button>
+        <button onClick={(e) => voteTwo(e)}>Click</button>
       </div>
     </div>
   ) : (
