@@ -2,6 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { authorize } from "../actions/authorizedUser";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
 const LoginPage = ({ dispatch, loggedIn }) => {
   const [username, setUsername] = useState("mtsamis");
@@ -23,36 +24,54 @@ const LoginPage = ({ dispatch, loggedIn }) => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={submit}>
-        <div>
-          <div>
-            <label htmlFor="username">Username</label>
-            <input
+    <Container>
+      <Row className="justify-content-md-center">
+        <Col className="text-center">
+          <h1>Employee Polls</h1>
+        </Col>
+      </Row>
+
+      <Row className="justify-content-md-center">
+        <Col className="text-center">
+          <h3>Login</h3>
+        </Col>
+      </Row>
+      <Form onSubmit={submit}>
+        <Form.Group as={Row} className="mb-3">
+          <Col sm="2">
+            <Form.Label htmlFor="username">Username</Form.Label>
+          </Col>
+          <Col sm="10">
+            <Form.Control
               value={username}
               onChange={inputUsername}
               type="text"
               name="username"
               id="username"
-            ></input>
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input
+            ></Form.Control>
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mt-3">
+          <Col sm="2">
+            <Form.Label htmlFor="password">Password</Form.Label>
+          </Col>
+          <Col sm="2">
+            <Form.Control
               value={password}
               onChange={inputPassword}
               type="password"
               name="password"
               id="password"
-            ></input>
-          </div>
-          <div>
-            <button type="submit">Login</button>
-          </div>
-        </div>
-      </form>
-    </div>
+            ></Form.Control>
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mt-3">
+          <Button disabled type="submit">
+            Login
+          </Button>
+        </Form.Group>
+      </Form>
+    </Container>
   );
 };
 

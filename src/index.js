@@ -9,7 +9,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import users from "./reducers/users";
 import questions from "./reducers/questions";
 import authorizedUser from "./reducers/authorizedUser";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 const logger = (store) => (next) => (action) => {
   console.group(action.type);
   console.log("The action: ", action);
