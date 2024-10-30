@@ -55,7 +55,7 @@ const LoginPage = ({ dispatch, loggedIn }) => {
           <Col sm="2">
             <Form.Label htmlFor="password">Password</Form.Label>
           </Col>
-          <Col sm="2">
+          <Col sm="10">
             <Form.Control
               value={password}
               onChange={inputPassword}
@@ -66,9 +66,7 @@ const LoginPage = ({ dispatch, loggedIn }) => {
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="mt-3">
-          <Button disabled type="submit">
-            Login
-          </Button>
+          <Button type="submit">Login</Button>
         </Form.Group>
       </Form>
     </Container>

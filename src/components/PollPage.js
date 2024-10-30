@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import Nav from "./Nav";
 import { handleVote } from "../actions/questions";
+import TopBar from "./TopBar";
 
 const PollPage = ({ dispatch, loggedIn, question, userId }) => {
   const redirectUrl = window.location.href
@@ -23,7 +23,7 @@ const PollPage = ({ dispatch, loggedIn, question, userId }) => {
   };
   return loggedIn ? (
     <div>
-      <Nav />
+      <TopBar />
       <h1>Poll by {question.author}</h1>
       <h2>Would you rather?</h2>
       <div>
