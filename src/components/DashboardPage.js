@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import PollPanel from "./PollPanel";
 import TopBar from "./TopBar";
+import { Card, CardBody, Container, Row } from "react-bootstrap";
 
 const DashboardPage = ({ loggedIn, userId, questions }) => {
   const redirectUrl = window.location.href
@@ -10,40 +11,39 @@ const DashboardPage = ({ loggedIn, userId, questions }) => {
   const doneQuestions = questions.filter(
     (question) =>
       question.optionOne.votes.includes(userId) ||
-      question.optionTwo.votes.includes(userId)
+      question.optionTwo.votes.includes(userId),
   );
 
   const newQuestions = questions.filter(
     (question) =>
       !question.optionOne.votes.includes(userId) &&
-      !question.optionTwo.votes.includes(userId)
+      !question.optionTwo.votes.includes(userId),
   );
 
   return loggedIn ? (
-    <div>
+    <Container>
       <TopBar />
-      <div>Dashboard</div>
-      <div>
-        <h2>New Questions</h2>
-        <ul>
-          {newQuestions.map((question) => (
-            <li key={question.id}>
+      <Card className="mt-2">
+        <Card.Title className="text-center mt-2">New Question</Card.Title>
+        <CardBody>
+          <Row>
+            {newQuestions.map((question) => (
               <PollPanel question={question} />
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h2>Done</h2>
-        <ul>
-          {doneQuestions.map((question) => (
-            <li key={question.id}>
+            ))}
+          </Row>
+        </CardBody>
+      </Card>
+      <Card className="mt-2">
+        <Card.Title className="text-center mt-2">Done</Card.Title>
+        <Card.Body>
+          <Row>
+            {doneQuestions.map((question) => (
               <PollPanel question={question} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+            ))}
+          </Row>
+        </Card.Body>
+      </Card>
+    </Container>
   ) : (
     <Navigate to={`/login?redirectTo=${redirectUrl}`} />
   );

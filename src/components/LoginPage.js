@@ -2,7 +2,8 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { authorize } from "../actions/authorizedUser";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
+import login from "../res/login.png";
 
 const LoginPage = ({ dispatch, loggedIn }) => {
   const [username, setUsername] = useState("mtsamis");
@@ -10,7 +11,7 @@ const LoginPage = ({ dispatch, loggedIn }) => {
 
   if (loggedIn) {
     const redirectUrl = new URLSearchParams(window.location.search).get(
-      "redirectTo"
+      "redirectTo",
     );
 
     return <Navigate to={redirectUrl ? redirectUrl : "/"} />;
@@ -30,14 +31,19 @@ const LoginPage = ({ dispatch, loggedIn }) => {
           <h1>Employee Polls</h1>
         </Col>
       </Row>
+      <Row className="justify-content-md-center">
+        <Col sm={6}>
+          <Image src={login} roundedCircle />
+        </Col>
+      </Row>
 
       <Row className="justify-content-md-center">
-        <Col className="text-center">
+        <Col className="text-center mt-5">
           <h3>Login</h3>
         </Col>
       </Row>
       <Form onSubmit={submit}>
-        <Form.Group as={Row} className="mb-3">
+        <Form.Group as={Row} className="mt-3">
           <Col sm="2">
             <Form.Label htmlFor="username">Username</Form.Label>
           </Col>
