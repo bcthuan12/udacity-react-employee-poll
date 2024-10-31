@@ -5,7 +5,7 @@ const TopBar = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary text-start">
       <Container>
-        <Nav className="me-auto" variant={"tabs"}>
+        <Nav className="me-auto" variant={"underline"}>
           <Nav.Link as={Link} to="/">
             Home
           </Nav.Link>

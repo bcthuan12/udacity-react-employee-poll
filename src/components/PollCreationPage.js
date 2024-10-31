@@ -2,6 +2,16 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { createNewQuestion } from "../actions/questions";
+import TopBar from "./TopBar";
+import {
+  Button,
+  Container,
+  Form,
+  FormControl,
+  FormGroup,
+  FormLabel,
+  Row,
+} from "react-bootstrap";
 
 const PollCreationPage = ({ loggedIn, dispatch, userId }) => {
   const redirectUrl = window.location.href
@@ -22,36 +32,56 @@ const PollCreationPage = ({ loggedIn, dispatch, userId }) => {
         optionOneText: firstOption,
         optionTwoText: secondOption,
         author: userId,
-      })
+      }),
     );
     navigate("/");
   };
 
   return loggedIn ? (
     <div>
-      <h2>Would you rather</h2>
-      <h4>Create Your Own Poll</h4>
-      <form onSubmit={submit}>
-        <div>
-          <label htmlFor="firstOption">First Option</label>
-          <input
-            value={firstOption}
-            onChange={inputFirstOption}
-            name="firstOption"
-            id="firstOption"
-          ></input>
-        </div>
-        <div>
-          <label htmlFor="secondOption">Second Option</label>
-          <input
-            value={secondOption}
-            onChange={inputSecondOption}
-            name="secondOption"
-            id="firstOption"
-          ></input>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      <TopBar />
+      <Container>
+        <Row className="text-center">
+          <h2>Would you rather</h2>
+        </Row>
+        <Row className="text-center">
+          <h6 style={{ color: "grey", fontWeight: 700 }}>
+            Create Your Own Poll
+          </h6>
+        </Row>
+        <Form onSubmit={submit}>
+          <Form.Group className="mt-3 text-center justify-content-center">
+            <FormLabel htmlFor="firstOption">First Option</FormLabel>
+            <FormControl
+              value={firstOption}
+              onChange={inputFirstOption}
+              name="firstOption"
+              id="firstOption"
+              style={{ width: 900, justifySelf: "center" }}
+            ></FormControl>
+          </Form.Group>
+          <FormGroup className="mt-3 text-center">
+            <FormLabel htmlFor="secondOption">Second Option</FormLabel>
+            <FormControl
+              value={secondOption}
+              onChange={inputSecondOption}
+              name="secondOption"
+              id="firstOption"
+              style={{ width: 900, justifySelf: "center" }}
+            ></FormControl>
+          </FormGroup>
+          <FormGroup className="mt-3 text-center">
+            <Button
+              variant={"info"}
+              type="submit"
+              size={"lg"}
+              style={{ width: 300 }}
+            >
+              Submit
+            </Button>
+          </FormGroup>
+        </Form>
+      </Container>
     </div>
   ) : (
     <Navigate to={`/login?redirectTo=${redirectUrl}`} />
