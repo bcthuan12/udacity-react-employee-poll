@@ -23,9 +23,11 @@ const DashboardPage = ({ loggedIn, userId, questions }) => {
   return loggedIn ? (
     <div>
       <TopBar />
-      <Container>
+      <Container className="mt-lg-5">
         <Card className="mt-2">
-          <Card.Title className="text-center mt-2">New Question</Card.Title>
+          <Card.Title className="text-center mt-4">
+            <h2>New Question</h2>
+          </Card.Title>
           <CardBody>
             <Row>
               {newQuestions.map((question) => (
@@ -34,8 +36,10 @@ const DashboardPage = ({ loggedIn, userId, questions }) => {
             </Row>
           </CardBody>
         </Card>
-        <Card className="mt-2">
-          <Card.Title className="text-center mt-2">Done</Card.Title>
+        <Card className="mt-5">
+          <Card.Title className="text-center mt-4">
+            <h2>Done</h2>
+          </Card.Title>
           <Card.Body>
             <Row>
               {doneQuestions.map((question) => (

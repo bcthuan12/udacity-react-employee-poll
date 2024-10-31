@@ -72,10 +72,11 @@ const PollCreationPage = ({ loggedIn, dispatch, userId }) => {
           </FormGroup>
           <FormGroup className="mt-3 text-center">
             <Button
-              variant={"info"}
+              variant={"outline-success"}
               type="submit"
               size={"lg"}
               style={{ width: 300 }}
+              disabled={firstOption?.length === 0 || secondOption?.length === 0}
             >
               Submit
             </Button>

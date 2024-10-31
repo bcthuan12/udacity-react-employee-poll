@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import TopBar from "./TopBar";
+import { Container, Table } from "react-bootstrap";
 
 const LeaderBoardPage = ({ loggedIn, users }) => {
   const redirectUrl = window.location.href
@@ -9,18 +10,41 @@ const LeaderBoardPage = ({ loggedIn, users }) => {
   return loggedIn ? (
     <div>
       <TopBar />
-      <h1>Leader board</h1>
-      <ul>
-        {users.map((u) => (
-          <li key={u.id}>
-            <span>
-              Name: {u.name}/{u.id}
-            </span>
-            <span>Answered: {Object.keys(u.answers).length}</span>
-            <span>Questions: {Object.keys(u.questions).length}</span>
-          </li>
-        ))}
-      </ul>
+      <Container className="mt-5">
+        <Table
+          bordered
+          hover
+          className="table table-bordered border-success border-opacity-25"
+        >
+          <thead>
+            <tr>
+              <th>
+                <h3>Users</h3>
+              </th>
+              <th>
+                <h3>Answered</h3>
+              </th>
+              <th>
+                <h3>Created</h3>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((u) => (
+              <tr>
+                <td>
+                  <div>
+                    <h5>{u.name}</h5>
+                    <h6>{u.id}</h6>
+                  </div>
+                </td>
+                <td>{Object.keys(u.answers).length}</td>
+                <td>Questions: {Object.keys(u.questions).length}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Container>
     </div>
   ) : (
     <Navigate to={`/login?redirectTo=${redirectUrl}`} />

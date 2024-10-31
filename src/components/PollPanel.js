@@ -8,12 +8,18 @@ const PollPanel = ({ question }) => {
       timeStyle: "long",
     }).format(new Date(timestamp));
   return (
-    <Col>
+    <Col sm={4} className="mt-3">
       <Card style={{ borderStyle: "dashed" }} sm={4}>
         <Card.Title className="text-center mt-2">{question.author}</Card.Title>
         <CardBody className="text-center">
           <CardText>{createDate(question.timestamp)}</CardText>
-          <Button size={"lg"} as={Link} to={"/question/" + question.id}>
+          <Button
+            style={{ display: "block" }}
+            size={"lg"}
+            as={Link}
+            to={"/question/" + question.id}
+            variant={"outline-success"}
+          >
             Vote
           </Button>
         </CardBody>
