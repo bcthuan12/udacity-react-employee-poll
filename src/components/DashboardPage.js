@@ -21,29 +21,31 @@ const DashboardPage = ({ loggedIn, userId, questions }) => {
   );
 
   return loggedIn ? (
-    <Container>
+    <div>
       <TopBar />
-      <Card className="mt-2">
-        <Card.Title className="text-center mt-2">New Question</Card.Title>
-        <CardBody>
-          <Row>
-            {newQuestions.map((question) => (
-              <PollPanel question={question} />
-            ))}
-          </Row>
-        </CardBody>
-      </Card>
-      <Card className="mt-2">
-        <Card.Title className="text-center mt-2">Done</Card.Title>
-        <Card.Body>
-          <Row>
-            {doneQuestions.map((question) => (
-              <PollPanel question={question} />
-            ))}
-          </Row>
-        </Card.Body>
-      </Card>
-    </Container>
+      <Container>
+        <Card className="mt-2">
+          <Card.Title className="text-center mt-2">New Question</Card.Title>
+          <CardBody>
+            <Row>
+              {newQuestions.map((question) => (
+                <PollPanel key={question.id} question={question} />
+              ))}
+            </Row>
+          </CardBody>
+        </Card>
+        <Card className="mt-2">
+          <Card.Title className="text-center mt-2">Done</Card.Title>
+          <Card.Body>
+            <Row>
+              {doneQuestions.map((question) => (
+                <PollPanel key={question.id} question={question} />
+              ))}
+            </Row>
+          </Card.Body>
+        </Card>
+      </Container>
+    </div>
   ) : (
     <Navigate to={`/login?redirectTo=${redirectUrl}`} />
   );

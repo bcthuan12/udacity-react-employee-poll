@@ -1,12 +1,4 @@
-import { Link } from "react-router-dom";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardText,
-  Col,
-} from "react-bootstrap";
+import { Button, Card, CardBody, CardText, Col } from "react-bootstrap";
 
 const PollPanel = ({ question }) => {
   const createDate = (timestamp) =>

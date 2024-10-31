@@ -9,7 +9,6 @@ const LeaderBoardPage = ({ loggedIn, users }) => {
   return loggedIn ? (
     <div>
       <TopBar />
-
       <h1>Leader board</h1>
       <ul>
         {users.map((u) => (
@@ -32,7 +31,7 @@ const mapStateToProps = ({ authorizedUser, users }) => {
   return {
     loggedIn: !!authorizedUser,
     users: Object.values(users).sort(
-      (a, b) => Object.keys(b.answers).length - Object.keys(a.answers)
+      (a, b) => Object.keys(b.answers).length - Object.keys(a.answers),
     ),
   };
 };
