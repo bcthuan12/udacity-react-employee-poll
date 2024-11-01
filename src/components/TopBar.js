@@ -26,9 +26,9 @@ const TopBar = ({ dispatch, user }) => {
         </Nav>
       </Row>
       <div>
-        <Image src={user.image} style={{ width: 60 }} />
+        <Image src={user?.image} style={{ width: 60 }} />
         <span className="mb-1 text-muted m-lg-2" style={{ fontSize: 20 }}>
-          {user.id}
+          {user?.id}
         </span>
         <Button variant={"warning"} className="p-1 m-lg-2" onClick={logout}>
           Logout
