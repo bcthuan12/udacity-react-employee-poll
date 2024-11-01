@@ -49,6 +49,7 @@ const LoginPage = ({ dispatch, loggedIn }) => {
           </Col>
           <Col sm="10">
             <Form.Control
+              data-testid="inputUserName"
               value={username}
               onChange={inputUsername}
               type="text"
@@ -65,6 +66,7 @@ const LoginPage = ({ dispatch, loggedIn }) => {
             <Form.Control
               value={password}
               onChange={inputPassword}
+              data-testid="inputPassword"
               type="password"
               name="password"
               id="password"

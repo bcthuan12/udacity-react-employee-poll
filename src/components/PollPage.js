@@ -9,10 +9,11 @@ import {
   CardTitle,
   Col,
   Container,
+  Image,
   Row,
 } from "react-bootstrap";
 
-const PollPage = ({ dispatch, loggedIn, question, userId }) => {
+const PollPage = ({ dispatch, loggedIn, question, userAvatar }) => {
   const redirectUrl = window.location.href
     .toString()
     .split(window.location.host)[1];
@@ -34,8 +35,13 @@ const PollPage = ({ dispatch, loggedIn, question, userId }) => {
     <div>
       <TopBar />
       <Container>
-        <Row className="text-center">
+        <Row className="text-center mt-3">
           <h4>Poll by {question.author}</h4>
+        </Row>
+        <Row className="text-center">
+          <Col>
+            <Image src={userAvatar} style={{ width: 300 }} />
+          </Col>
         </Row>
         <Row className="text-center">
           <h5>Would you rather?</h5>
@@ -103,7 +109,7 @@ const mapStateToProps = ({ authorizedUser, questions }) => {
   return {
     loggedIn: !!authorizedUser,
     question: Object.values(questions).find((q) => q.id === useParams().id),
-    userId: authorizedUser?.id,
+    userAvatar: authorizedUser?.image,
   };
 };
 

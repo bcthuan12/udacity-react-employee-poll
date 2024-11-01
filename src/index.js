@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -10,6 +10,7 @@ import users from "./reducers/users";
 import questions from "./reducers/questions";
 import authorizedUser from "./reducers/authorizedUser";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 const logger = (store) => (next) => (action) => {
   console.group(action.type);
   console.log("The action: ", action);
@@ -19,20 +20,19 @@ const logger = (store) => (next) => (action) => {
   return returnValue;
 };
 
-const store = configureStore({
+export const store = configureStore({
   reducer: { users, questions, authorizedUser },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
-const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const container =
+  document.getElementById("root") || document.createElement("div");
+console.log(container);
+const root = createRoot(container);
 root.render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </Provider>
+  </Provider>,
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

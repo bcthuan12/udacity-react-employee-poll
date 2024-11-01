@@ -20,7 +20,7 @@ const PollPanel = ({ question }) => {
             to={"/question/" + question.id}
             variant={"outline-success"}
           >
-            Vote
+            Show
           </Button>
         </CardBody>
       </Card>
