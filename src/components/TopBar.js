@@ -20,7 +20,7 @@ const TopBar = ({ dispatch, user }) => {
           <Nav.Link as={Link} to="/leaderboard" data-testid="leaderboardMenu">
             Leaderboard
           </Nav.Link>
-          <Nav.Link as={Link} to="/new" data-testid="newMenu">
+          <Nav.Link as={Link} to="/add" data-testid="newMenu">
             New
           </Nav.Link>
         </Nav>

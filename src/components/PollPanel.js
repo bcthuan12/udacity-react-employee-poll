@@ -17,7 +17,7 @@ const PollPanel = ({ question }) => {
             style={{ display: "block" }}
             size={"lg"}
             as={Link}
-            to={"/question/" + question.id}
+            to={"/questions/" + question.id}
             variant={"outline-success"}
           >
             Show

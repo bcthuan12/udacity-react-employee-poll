@@ -13,12 +13,17 @@ import {
   Row,
 } from "react-bootstrap";
 
-const PollPage = ({ dispatch, loggedIn, question, userAvatar }) => {
+const PollPage = ({ dispatch, loggedIn, question, userAvatar, userId }) => {
   const redirectUrl = window.location.href
     .toString()
     .split(window.location.host)[1];
 
   const navigate = useNavigate();
+
+  const isSelectedVote = (votes) => {
+    console.log("check", votes);
+    return votes.includes(userId);
+  };
 
   const voteOne = (e) => {
     e.preventDefault();
@@ -63,7 +68,11 @@ const PollPage = ({ dispatch, loggedIn, question, userAvatar }) => {
               <CardBody style={{ display: "flex" }}>
                 <Button
                   size={"lg"}
-                  variant={"outline-success"}
+                  variant={
+                    isSelectedVote(question.optionOne.votes)
+                      ? "success"
+                      : "warning"
+                  }
                   as={Col}
                   onClick={(e) => voteOne(e)}
                 >
@@ -88,7 +97,11 @@ const PollPage = ({ dispatch, loggedIn, question, userAvatar }) => {
               <CardBody style={{ display: "flex" }}>
                 <Button
                   size={"lg"}
-                  variant={"outline-success"}
+                  variant={
+                    isSelectedVote(question.optionTwo.votes)
+                      ? "success"
+                      : "warning"
+                  }
                   as={Col}
                   onClick={(e) => voteTwo(e)}
                 >
@@ -110,6 +123,7 @@ const mapStateToProps = ({ authorizedUser, questions }) => {
     loggedIn: !!authorizedUser,
     question: Object.values(questions).find((q) => q.id === useParams().id),
     userAvatar: authorizedUser?.image,
+    userId: authorizedUser?.id,
   };
 };
 

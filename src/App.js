@@ -18,8 +18,8 @@ const App = ({ dispatch, loggedIn }) => {
       <Routes>
         <Route path="/login" exact element={<LoginPage />} />
         <Route path="/" element={<DashboardPage />} />
-        <Route path="/new" exact element={<PollCreationPage />}></Route>
-        <Route path="/question/:id" element={<PollPage />}></Route>
+        <Route path="/add" exact element={<PollCreationPage />}></Route>
+        <Route path="/questions/:id" element={<PollPage />}></Route>
         <Route path="/leaderboard" exact element={<LeaderBoardPage />}></Route>
       </Routes>
     </div>

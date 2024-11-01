@@ -31,7 +31,7 @@ const LeaderBoardPage = ({ loggedIn, users }) => {
           </thead>
           <tbody>
             {users.map((u) => (
-              <tr>
+              <tr key={u.id}>
                 <td>
                   <div>
                     <h5>{u.name}</h5>
