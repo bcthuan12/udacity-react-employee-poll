@@ -1,17 +1,15 @@
-import {
-  Button,
-  Col,
-  Container,
-  Image,
-  Nav,
-  Navbar,
-  Row,
-} from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Button, Image, Nav, Navbar, Row } from "react-bootstrap";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { connect } from "react-redux";
+import { setAuthorizedUser } from "../actions/authorizedUser";
 
-const TopBar = ({ user }) => {
-  console.log(user.image);
+const TopBar = ({ dispatch, user }) => {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch(setAuthorizedUser(null));
+    navigate("/");
+  };
   return (
     <Navbar expand="lg" className="bg-body-tertiary justify-content-between">
       <Row className="m-lg-2">
@@ -32,7 +30,7 @@ const TopBar = ({ user }) => {
         <span className="mb-1 text-muted m-lg-2" style={{ fontSize: 20 }}>
           {user.id}
         </span>
-        <Button variant={"warning"} className="p-1 m-lg-2">
+        <Button variant={"warning"} className="p-1 m-lg-2" onClick={logout}>
           Logout
         </Button>
       </div>
