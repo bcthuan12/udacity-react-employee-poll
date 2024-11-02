@@ -33,4 +33,13 @@ describe("saveQuestionAnswer Test suite", () => {
     });
     expect(result).toEqual(true);
   });
+  test("Failed case", async () => {
+    const result = await _saveQuestionAnswer({
+      authedUser: "sarahedo",
+      qid: undefined,
+      answer: "optionOne",
+    }).catch((e) => e);
+
+    expect(result).toBe("Please provide authedUser, qid, and answer");
+  });
 });
