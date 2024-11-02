@@ -37,24 +37,28 @@ const PollPage = ({ dispatch, questions, users, userId }) => {
   const optionTwoVoted = () => question?.optionTwo?.votes.includes(userId);
 
   const optionOnePercent = () =>
-    (question.optionOne.votes.length /
-      ((question.optionOne?.votes?.length
-        ? question.optionOne.votes.length
-        : 0) +
-        (question.optionTwo?.votes?.length
-          ? question.optionTwo.votes.length
-          : 0))) *
-    100;
+    (
+      (question.optionOne.votes.length /
+        ((question.optionOne?.votes?.length
+          ? question.optionOne.votes.length
+          : 0) +
+          (question.optionTwo?.votes?.length
+            ? question.optionTwo.votes.length
+            : 0))) *
+      100
+    ).toFixed(2);
 
   const optionTwoPercent = () =>
-    (question?.optionTwo?.votes?.length /
-      ((question.optionOne?.votes?.length
-        ? question.optionOne.votes.length
-        : 0) +
-        (question.optionTwo?.votes?.length
-          ? question.optionTwo.votes.length
-          : 0))) *
-    100;
+    (
+      (question?.optionTwo?.votes?.length /
+        ((question.optionOne?.votes?.length
+          ? question.optionOne.votes.length
+          : 0) +
+          (question.optionTwo?.votes?.length
+            ? question.optionTwo.votes.length
+            : 0))) *
+      100
+    ).toFixed(2);
 
   const voteOne = (e) => {
     e.preventDefault();
@@ -103,7 +107,8 @@ const PollPage = ({ dispatch, questions, users, userId }) => {
                   >
                     <h5>
                       <Badge bg="primary">
-                        {optionOnePercent()} % people chose this
+                        There are {question?.optionOne?.votes?.length} (
+                        {optionOnePercent()} %) people chose this
                       </Badge>
                     </h5>
                     {optionOneVoted() ? (
@@ -150,7 +155,8 @@ const PollPage = ({ dispatch, questions, users, userId }) => {
                   >
                     <h5>
                       <Badge bg="primary">
-                        {optionTwoPercent()} % people chose this
+                        There are {question?.optionTwo?.votes?.length} (
+                        {optionTwoPercent()} %) people chose this
                       </Badge>
                     </h5>
                     {optionTwoVoted() ? (
