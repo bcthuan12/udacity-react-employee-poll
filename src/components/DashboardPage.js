@@ -55,7 +55,7 @@ const DashboardPage = ({ userId, questions }) => {
             </CardBody>
           </Card>
         ) : (
-          <Card className="mt-5">
+          <Card className="mt-2">
             <Card.Title className="text-center mt-4">
               <h2>Done</h2>
             </Card.Title>

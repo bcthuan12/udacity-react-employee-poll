@@ -1,8 +1,11 @@
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import TopBar from "./TopBar";
-import { Container, Table } from "react-bootstrap";
+import { Container, Image, Row, Stack, Table } from "react-bootstrap";
 
-const LeaderBoardPage = ({ loggedIn, users }) => {
+const LeaderBoardPage = () => {
+  const users = Object.values(useSelector((state) => state.users)).sort(
+    (a, b) => Object.keys(b.answers).length - Object.keys(a.answers).length,
+  );
   return (
     <div>
       <TopBar />
@@ -30,12 +33,17 @@ const LeaderBoardPage = ({ loggedIn, users }) => {
               <tr key={u.id}>
                 <td>
                   <div>
-                    <h5>{u.name}</h5>
-                    <h6>{u.id}</h6>
+                    <Stack direction={"horizontal"} gap={4}>
+                      <Image src={u?.image} style={{ width: 50 }} />
+                      <Stack direction={"vertical"} gap={1}>
+                        <h5>{u.name}</h5>
+                        <h6>{u.id}</h6>
+                      </Stack>
+                    </Stack>
                   </div>
                 </td>
-                <td>{Object.keys(u.questions).length}</td>
                 <td>{Object.keys(u.answers).length}</td>
+                <td>{Object.keys(u.questions).length}</td>
               </tr>
             ))}
           </tbody>
@@ -45,11 +53,4 @@ const LeaderBoardPage = ({ loggedIn, users }) => {
   );
 };
 
-const mapStateToProps = ({ users }) => {
-  return {
-    users: Object.values(users).sort(
-      (a, b) => Object.keys(b.answers).length - Object.keys(a.answers),
-    ),
-  };
-};
-export default connect(mapStateToProps)(LeaderBoardPage);
+export default LeaderBoardPage;

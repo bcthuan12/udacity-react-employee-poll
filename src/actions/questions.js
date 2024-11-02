@@ -1,4 +1,5 @@
 import { saveQuestion, saveQuestionAnswer } from "../utils/apis";
+import { addUserAnswer, addUserQuestion } from "./users";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
@@ -19,9 +20,12 @@ const addQuestion = (question) => {
 };
 
 export const createNewQuestion = (question) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const { authorizedUser } = getState();
+
     return saveQuestion(question).then((q) => {
       dispatch(addQuestion(q));
+      dispatch(addUserQuestion(authorizedUser.id, q.id));
     });
   };
 };
@@ -41,7 +45,8 @@ export const handleVote = (questionId, answer) => {
     return saveQuestionAnswer(authorizedUser.id, questionId, answer).then(
       () => {
         dispatch(votePoll(authorizedUser.id, questionId, answer));
-      }
+        dispatch(addUserAnswer(authorizedUser.id, questionId, answer));
+      },
     );
   };
 };
