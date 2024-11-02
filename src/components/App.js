@@ -1,14 +1,13 @@
-import "./App.css";
-import { handleInitialData } from "./actions/shared";
+import { handleInitialData } from "../actions/shared";
 import { connect } from "react-redux";
-import LoginPage from "./components/LoginPage";
-import DashboardPage from "./components/DashboardPage";
+import LoginPage from "./LoginPage";
+import DashboardPage from "./DashboardPage";
 import { Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
-import PollCreationPage from "./components/PollCreationPage";
-import PollPage from "./components/PollPage";
-import LeaderBoardPage from "./components/LeaderBoardPage";
-import Interceptor from "./components/Interceptor";
+import PollCreationPage from "./PollCreationPage";
+import PollPage from "./PollPage";
+import LeaderBoardPage from "./LeaderBoardPage";
+import Interceptor from "./Interceptor";
 
 const App = ({ dispatch, loggedIn }) => {
   useEffect(() => {
