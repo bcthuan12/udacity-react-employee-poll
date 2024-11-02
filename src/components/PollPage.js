@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { handleVote } from "../actions/questions";
 import TopBar from "./TopBar";
 import {
@@ -14,8 +14,15 @@ import {
   Stack,
 } from "react-bootstrap";
 
-const PollPage = ({ dispatch, question, userAvatar, userId }) => {
+const PollPage = ({ dispatch, questions, users, userId }) => {
   const navigate = useNavigate();
+  const id = useParams().id;
+  const question = questions?.find((q) => q.id === id);
+
+  // Navigate to 404 page if question not found
+  if (!question) {
+    return <Navigate to={"/404"} />;
+  }
 
   const hasVoted = () => {
     return (
@@ -23,6 +30,8 @@ const PollPage = ({ dispatch, question, userAvatar, userId }) => {
       question?.optionTwo?.votes.includes(userId)
     );
   };
+
+  const userAvatar = users?.find((u) => u.id === question.author)?.image;
 
   const optionOneVoted = () => question?.optionOne?.votes.includes(userId);
   const optionTwoVoted = () => question?.optionTwo?.votes.includes(userId);
@@ -50,13 +59,11 @@ const PollPage = ({ dispatch, question, userAvatar, userId }) => {
   const voteOne = (e) => {
     e.preventDefault();
     dispatch(handleVote(question.id, "optionOne"));
-    navigate("/");
   };
 
   const voteTwo = (e) => {
     e.preventDefault();
     dispatch(handleVote(question.id, "optionTwo"));
-    navigate("/");
   };
   return (
     <div>
@@ -174,10 +181,10 @@ const PollPage = ({ dispatch, question, userAvatar, userId }) => {
   );
 };
 
-const mapStateToProps = ({ authorizedUser, questions, user }) => {
+const mapStateToProps = ({ authorizedUser, questions, users }) => {
   return {
-    question: Object.values(questions).find((q) => q.id === useParams().id),
-    userAvatar: authorizedUser?.image,
+    questions: Object.values(questions),
+    users: Object.values(users),
     userId: authorizedUser?.id,
   };
 };

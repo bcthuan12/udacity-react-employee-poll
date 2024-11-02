@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
 import TopBar from "./TopBar";
 import { Container, Table } from "react-bootstrap";
 
@@ -35,8 +34,8 @@ const LeaderBoardPage = ({ loggedIn, users }) => {
                     <h6>{u.id}</h6>
                   </div>
                 </td>
+                <td>{Object.keys(u.questions).length}</td>
                 <td>{Object.keys(u.answers).length}</td>
-                <td>Questions: {Object.keys(u.questions).length}</td>
               </tr>
             ))}
           </tbody>
