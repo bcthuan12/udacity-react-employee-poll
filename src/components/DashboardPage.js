@@ -4,10 +4,7 @@ import PollPanel from "./PollPanel";
 import TopBar from "./TopBar";
 import { Card, CardBody, Container, Row } from "react-bootstrap";
 
-const DashboardPage = ({ loggedIn, userId, questions }) => {
-  const redirectUrl = window.location.href
-    .toString()
-    .split(window.location.host)[1];
+const DashboardPage = ({ userId, questions }) => {
   const doneQuestions = questions.filter(
     (question) =>
       question.optionOne.votes.includes(userId) ||
@@ -20,7 +17,7 @@ const DashboardPage = ({ loggedIn, userId, questions }) => {
       !question.optionTwo.votes.includes(userId),
   );
 
-  return loggedIn ? (
+  return (
     <div>
       <TopBar />
       <Container className="mt-lg-5">
@@ -50,13 +47,10 @@ const DashboardPage = ({ loggedIn, userId, questions }) => {
         </Card>
       </Container>
     </div>
-  ) : (
-    <Navigate to={`/login?redirectTo=${redirectUrl}`} />
   );
 };
 
 const mapStateToProps = ({ authorizedUser, questions }) => ({
-  loggedIn: !!authorizedUser,
   userId: authorizedUser?.id,
   questions: Object.values(questions),
 });

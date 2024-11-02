@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import PollCreationPage from "./components/PollCreationPage";
 import PollPage from "./components/PollPage";
 import LeaderBoardPage from "./components/LeaderBoardPage";
+import Interceptor from "./components/Interceptor";
 
 const App = ({ dispatch, loggedIn }) => {
   useEffect(() => {
@@ -17,10 +18,10 @@ const App = ({ dispatch, loggedIn }) => {
     <div>
       <Routes>
         <Route path="/login" exact element={<LoginPage />} />
-        <Route path="/" element={<DashboardPage />} />
-        <Route path="/add" exact element={<PollCreationPage />}></Route>
-        <Route path="/questions/:id" element={<PollPage />}></Route>
-        <Route path="/leaderboard" exact element={<LeaderBoardPage />}></Route>
+        <Route path="/" element={<Interceptor><DashboardPage /></Interceptor>} />
+        <Route path="/add" exact element={<Interceptor><PollCreationPage /></Interceptor>}></Route>
+        <Route path="/questions/:id" element={<Interceptor><PollPage /></Interceptor>}></Route>
+        <Route path="/leaderboard" exact element={<Interceptor><LeaderBoardPage /></Interceptor>}></Route>
       </Routes>
     </div>
   );

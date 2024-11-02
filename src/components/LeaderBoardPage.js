@@ -4,10 +4,7 @@ import TopBar from "./TopBar";
 import { Container, Table } from "react-bootstrap";
 
 const LeaderBoardPage = ({ loggedIn, users }) => {
-  const redirectUrl = window.location.href
-    .toString()
-    .split(window.location.host)[1];
-  return loggedIn ? (
+  return (
     <div>
       <TopBar />
       <Container className="mt-5">
@@ -46,14 +43,11 @@ const LeaderBoardPage = ({ loggedIn, users }) => {
         </Table>
       </Container>
     </div>
-  ) : (
-    <Navigate to={`/login?redirectTo=${redirectUrl}`} />
   );
 };
 
-const mapStateToProps = ({ authorizedUser, users }) => {
+const mapStateToProps = ({ users }) => {
   return {
-    loggedIn: !!authorizedUser,
     users: Object.values(users).sort(
       (a, b) => Object.keys(b.answers).length - Object.keys(a.answers),
     ),

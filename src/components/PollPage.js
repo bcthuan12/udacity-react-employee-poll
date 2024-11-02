@@ -13,11 +13,7 @@ import {
   Row,
 } from "react-bootstrap";
 
-const PollPage = ({ dispatch, loggedIn, question, userAvatar, userId }) => {
-  const redirectUrl = window.location.href
-    .toString()
-    .split(window.location.host)[1];
-
+const PollPage = ({ dispatch, question, userAvatar, userId }) => {
   const navigate = useNavigate();
 
   const isSelectedVote = (votes) => {
@@ -36,7 +32,7 @@ const PollPage = ({ dispatch, loggedIn, question, userAvatar, userId }) => {
     dispatch(handleVote(question.id, "optionTwo"));
     navigate("/");
   };
-  return loggedIn ? (
+  return (
     <div>
       <TopBar />
       <Container>
@@ -113,14 +109,11 @@ const PollPage = ({ dispatch, loggedIn, question, userAvatar, userId }) => {
         </Row>
       </Container>
     </div>
-  ) : (
-    <Navigate to={`/login?redirectTo=${redirectUrl}`} />
   );
 };
 
-const mapStateToProps = ({ authorizedUser, questions }) => {
+const mapStateToProps = ({ authorizedUser, questions, user }) => {
   return {
-    loggedIn: !!authorizedUser,
     question: Object.values(questions).find((q) => q.id === useParams().id),
     userAvatar: authorizedUser?.image,
     userId: authorizedUser?.id,

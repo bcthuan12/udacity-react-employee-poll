@@ -13,11 +13,7 @@ import {
   Row,
 } from "react-bootstrap";
 
-const PollCreationPage = ({ loggedIn, dispatch, userId }) => {
-  const redirectUrl = window.location.href
-    .toString()
-    .split(window.location.host)[1];
-
+const PollCreationPage = ({dispatch, userId }) => {
   const [firstOption, setFirstOption] = useState("");
   const [secondOption, setSecondOption] = useState("");
 
@@ -37,7 +33,7 @@ const PollCreationPage = ({ loggedIn, dispatch, userId }) => {
     navigate("/");
   };
 
-  return loggedIn ? (
+  return (
     <div>
       <TopBar />
       <Container>
@@ -84,14 +80,11 @@ const PollCreationPage = ({ loggedIn, dispatch, userId }) => {
         </Form>
       </Container>
     </div>
-  ) : (
-    <Navigate to={`/login?redirectTo=${redirectUrl}`} />
   );
 };
 
 const mapStateToProps = ({ authorizedUser }) => {
   return {
-    loggedIn: !!authorizedUser,
     userId: authorizedUser?.id,
   };
 };

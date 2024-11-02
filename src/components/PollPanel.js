@@ -5,7 +5,7 @@ const PollPanel = ({ question }) => {
   const createDate = (timestamp) =>
     new Intl.DateTimeFormat("en-US", {
       dateStyle: "long",
-      timeStyle: "long",
+      timeStyle: "medium",
     }).format(new Date(timestamp));
   return (
     <Col sm={4} className="mt-3">
